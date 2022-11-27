@@ -3,7 +3,9 @@ package app.lodemsu.smarthome;
 import android.annotation.SuppressLint;
 import android.media.Image;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.Switch;
 
 import androidx.annotation.NonNull;
@@ -19,6 +21,7 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
+    @SuppressLint("NonConstantResourceId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
 
         Switch switch1 = findViewById(R.id.switch1);
         ImageView imageView = findViewById(R.id.imageView);
+        Button button = findViewById(R.id.button);
+        Button button2 = findViewById(R.id.button2);
 
         mDatabase.addValueEventListener(new ValueEventListener() {
             @SuppressLint("SetTextI18n")
@@ -63,6 +68,49 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 mDatabase.child("home").child("on").setValue(0);
             }
+        });
+
+        //button popup menu
+        button.setOnClickListener(v -> {
+            PopupMenu popup = new PopupMenu(MainActivity.this, button);
+            popup.getMenuInflater().inflate(R.menu.menu, popup.getMenu());
+            popup.setOnMenuItemClickListener(item -> {
+                switch (item.getItemId()) {
+                    case R.id.workson:
+                        mDatabase.child("home").child("door").setValue(1);
+                        return true;
+                    case R.id.workoff:
+                        mDatabase.child("home").child("door").setValue(2);
+                        return true;
+                    case R.id.autoon:
+                        mDatabase.child("home").child("door").setValue(0);
+                        return true;
+                    default:
+                        return false;
+                }
+            });
+            popup.show();
+        });
+
+        button2.setOnClickListener(v -> {
+            PopupMenu popup = new PopupMenu(MainActivity.this, button2);
+            popup.getMenuInflater().inflate(R.menu.menu, popup.getMenu());
+            popup.setOnMenuItemClickListener(item -> {
+                switch (item.getItemId()) {
+                    case R.id.workson:
+                        mDatabase.child("home").child("lamp").setValue(1);
+                        return true;
+                    case R.id.workoff:
+                        mDatabase.child("home").child("lamp").setValue(2);
+                        return true;
+                    case R.id.autoon:
+                        mDatabase.child("home").child("lamp").setValue(0);
+                        return true;
+                    default:
+                        return false;
+                }
+            });
+            popup.show();
         });
     }
 }
