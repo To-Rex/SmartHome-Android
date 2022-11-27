@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SmartHome</string>
+    <string name="connect">Connect</string>
 </resources>
