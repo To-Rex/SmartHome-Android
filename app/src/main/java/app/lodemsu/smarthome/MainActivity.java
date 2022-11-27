@@ -1,6 +1,7 @@
 package app.lodemsu.smarthome;
 
 import android.os.Bundle;
+import android.widget.Switch;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,6 +16,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-
+        Switch switch1 = findViewById(R.id.switch1);
+        //firebase realtime database home in on = value 1
+        switch1.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                mDatabase.child("home").child("on").setValue(1);
+            } else {
+                mDatabase.child("home").child("on").setValue(0);
+            }
+        });
     }
 }
