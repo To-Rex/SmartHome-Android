@@ -3,4 +3,7 @@
     <string name="connect">Connect</string>
     <string name="open_or_close">Open or Close</string>
     <string name="lampa">Lampa</string>
+    <string name="on">On</string>
+    <string name="off">Off</string>
+    <string name="auto">Auto</string>
 </resources>
