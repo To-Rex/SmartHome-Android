@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/onLamp"
+        android:title="@string/on" />
+    <item
+        android:id="@+id/offLamp"
+        android:title="@string/off" />
+</menu>

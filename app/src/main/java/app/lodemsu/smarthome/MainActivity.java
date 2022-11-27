@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -94,17 +95,14 @@ public class MainActivity extends AppCompatActivity {
 
         button2.setOnClickListener(v -> {
             PopupMenu popup = new PopupMenu(MainActivity.this, button2);
-            popup.getMenuInflater().inflate(R.menu.menu, popup.getMenu());
+            popup.getMenuInflater().inflate(R.menu.menu1, popup.getMenu());
             popup.setOnMenuItemClickListener(item -> {
                 switch (item.getItemId()) {
-                    case R.id.workson:
-                        mDatabase.child("home").child("lamp").setValue(1);
-                        return true;
-                    case R.id.workoff:
-                        mDatabase.child("home").child("lamp").setValue(2);
-                        return true;
-                    case R.id.autoon:
+                    case R.id.onLamp:
                         mDatabase.child("home").child("lamp").setValue(0);
+                        return true;
+                    case R.id.offLamp:
+                        mDatabase.child("home").child("lamp").setValue(1);
                         return true;
                     default:
                         return false;
