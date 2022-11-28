@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         ImageView imageView = findViewById(R.id.imageView);
         Button button = findViewById(R.id.button);
         Button button2 = findViewById(R.id.button2);
+        TextView textView2 = findViewById(R.id.textView2);
 
         mDatabase.addValueEventListener(new ValueEventListener() {
             @SuppressLint("SetTextI18n")
@@ -41,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 int on = dataSnapshot.child("home").child("on").getValue(Integer.class);
                 int dim = dataSnapshot.child("home").child("dim").getValue(Integer.class);
+                int door = dataSnapshot.child("home").child("door").getValue(Integer.class);
+                int lamp = dataSnapshot.child("home").child("lamp").getValue(Integer.class);
                 if (on == 1) {
                     switch1.setChecked(true);
                     switch1.setText("ON");
@@ -54,6 +58,20 @@ public class MainActivity extends AppCompatActivity {
                     imageView.setVisibility(ImageView.VISIBLE);
                 } else {
                     imageView.setVisibility(ImageView.INVISIBLE);
+                }
+                if (door == 0) {
+                    textView2.setText(null);
+                  }
+                if (door == 1) {
+                    textView2.setText("Door is open");
+                  }
+                if (door == 2) {
+                    textView2.setText("Door is closed");
+                }
+                if (lamp == 0) {
+                    button2.setTextColor(getResources().getColor(android.R.color.holo_orange_dark));
+                } else {
+                    button2.setTextColor(getResources().getColor(R.color.black));
                 }
             }
 
