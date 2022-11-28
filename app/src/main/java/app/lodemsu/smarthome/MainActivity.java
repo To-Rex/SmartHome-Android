@@ -89,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //button popup menu
         button.setOnClickListener(v -> {
             PopupMenu popup = new PopupMenu(MainActivity.this, button);
             popup.getMenuInflater().inflate(R.menu.menu, popup.getMenu());
